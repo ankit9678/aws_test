@@ -41,7 +41,7 @@ class App extends Component {
   // our first get method that uses our backend api to
   // fetch data from our data base
   getDataFromDb = () => {
-    fetch('http://nginx:80/api1/getData')
+    fetch('http://localhost:80/api1/getData')
       .then((data) => data.json())
       .then((res) => this.setState({ data: res.data }));
   };
@@ -55,7 +55,7 @@ class App extends Component {
       ++idToBeAdded;
     }
 
-    axios.post('http://nginx:80/api1/putData', {
+    axios.post('http://localhost:80/api1/putData', {
       id: idToBeAdded,
       message: message,
     });
@@ -72,7 +72,7 @@ class App extends Component {
       }
     });
 
-    axios.delete('https://nginx:80/api1/deleteData', {
+    axios.delete('https://localhost:80/api1/deleteData', {
       data: {
         id: objIdToDelete,
       },
@@ -90,7 +90,7 @@ class App extends Component {
       }
     });
 
-    axios.post('http://nginx:80/api1/updateData', {
+    axios.post('http://localhost:80/api1/updateData', {
       id: objIdToUpdate,
       update: { message: updateToApply },
     });
