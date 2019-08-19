@@ -41,7 +41,7 @@ class App extends Component {
   // our first get method that uses our backend api to
   // fetch data from our data base
   getDataFromDb = () => {
-    fetch('http://52.66.150.217:8080/api1/getData')
+    fetch('http://52.66.150.217:80/api1/getData')
       .then((data) => data.json())
       .then((res) => {
         this.setState({ data: res.data })
@@ -59,7 +59,7 @@ class App extends Component {
       ++idToBeAdded;
     }
 
-    axios.post('http://52.66.150.217:8080/api1/putData', {
+    axios.post('http://52.66.150.217:80/api1/putData', {
       id: idToBeAdded,
       message: message,
     });
@@ -76,7 +76,7 @@ class App extends Component {
       }
     });
 
-    axios.delete('https://localhost:8080/api1/deleteData', {
+    axios.delete('https://52.66.150.217:80/api1/deleteData', {
       data: {
         id: objIdToDelete,
       },
@@ -94,7 +94,7 @@ class App extends Component {
       }
     });
 
-    axios.post('http://localhost:8080/api1/updateData', {
+    axios.post('http://52.66.150.217:80/api1/updateData', {
       id: objIdToUpdate,
       update: { message: updateToApply },
     });
