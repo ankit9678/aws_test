@@ -6,7 +6,7 @@
      build: ./backend
      ports:
       - "8080:8080"
-     links:
+     depends_on:
       - mongo
 
     client:
@@ -16,7 +16,7 @@
      ports: 
       - "3000:3000"
      links:
-      - nginx
+      - server
 
     mongo:
      container_name: mongo
@@ -25,15 +25,15 @@
      ports:
      - 27017:27017
 
-    nginx:
-     container_name: nginx
-     image: nginx
-     ports:
-      - '80:80'
-     volumes:
-      - ./nginx-conf.conf:/etc/nginx/conf.d/default.conf
-     depends_on:
-      - server
+    # nginx:
+    #  container_name: nginx
+    #  image: nginx
+    #  ports:
+    #   - '80:80'
+    #  volumes:
+    #   - ./nginx-conf.conf:/etc/nginx/conf.d/default.conf
+    #  depends_on:
+    #   - server
 
     
 

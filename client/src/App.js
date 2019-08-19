@@ -41,9 +41,13 @@ class App extends Component {
   // our first get method that uses our backend api to
   // fetch data from our data base
   getDataFromDb = () => {
-    fetch('http://localhost:80/api1/getData')
+    fetch('http://localhost:8080/api1/getData')
       .then((data) => data.json())
-      .then((res) => this.setState({ data: res.data }));
+      .then((res) => {
+        this.setState({ data: res.data })
+        console.log(res.data)
+      }
+      )
   };
 
   // our put method that uses our backend api
@@ -55,7 +59,7 @@ class App extends Component {
       ++idToBeAdded;
     }
 
-    axios.post('http://localhost:80/api1/putData', {
+    axios.post('http://localhost:8080/api1/putData', {
       id: idToBeAdded,
       message: message,
     });
@@ -72,7 +76,7 @@ class App extends Component {
       }
     });
 
-    axios.delete('https://localhost:80/api1/deleteData', {
+    axios.delete('https://localhost:8080/api1/deleteData', {
       data: {
         id: objIdToDelete,
       },
@@ -90,7 +94,7 @@ class App extends Component {
       }
     });
 
-    axios.post('http://localhost:80/api1/updateData', {
+    axios.post('http://localhost:8080/api1/updateData', {
       id: objIdToUpdate,
       update: { message: updateToApply },
     });
@@ -107,12 +111,12 @@ class App extends Component {
           {data.length <= 0
             ? 'NO DB ENTRIES YET'
             : data.map((dat) => (
-                <li style={{ padding: '10px' }} key={data.message}>
-                  <span style={{ color: 'gray' }}> id: </span> {dat.id} <br />
-                  <span style={{ color: 'gray' }}> data: </span>
-                  {dat.message}
-                </li>
-              ))}
+              <li style={{ padding: '10px' }} key={data.message}>
+                <span style={{ color: 'gray' }}> id: </span> {dat.id} <br />
+                <span style={{ color: 'gray' }}> data: </span>
+                {dat.message}
+              </li>
+            ))}
         </ul>
         <div style={{ padding: '10px' }}>
           <input
