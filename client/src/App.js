@@ -41,7 +41,7 @@ class App extends Component {
   // our first get method that uses our backend api to
   // fetch data from our data base
   getDataFromDb = () => {
-    fetch('http://52.66.150.217:80/api1/getData')
+    fetch('http://52.66.150.217:80/api1/getData'
       .then((data) => data.json())
       .then((res) => {
         this.setState({ data: res.data })
